@@ -2,7 +2,6 @@
 let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
-  let modalContainer = document.querySelector("#modal-container");
 
   // Function to show loading message while fetching data
   function showLoadingMessage() {
@@ -35,11 +34,6 @@ let pokemonRepository = (function () {
     }
   }
 
-  // Function to get all the pokemon in the repository
-  function getAll() {
-    return pokemonList;
-  }
-
   // Function to add a new pokemon to the repository
   function add(pokemon) {
     let requiredKeys = ["name", "detailsUrl"];
@@ -53,6 +47,11 @@ let pokemonRepository = (function () {
       console.log("Object is missing required keys");
       return false;
     }
+  }
+
+  // Function to get all the pokemon in the repository
+  function getAll() {
+    return pokemonList;
   }
 
   // Function to find pokemon by name in the repository
@@ -73,9 +72,13 @@ let pokemonRepository = (function () {
   function addListItem(pokemon) {
     let pokemonList = document.querySelector(".pokemon-list");
     let listItem = document.createElement("li");
+    listItem.classList.add("list-item");
     let button = document.createElement("button");
     button.innerText = pokemon.name;
     button.classList.add("button-pokemon-list");
+
+    button.setAttribute("data-toggle", "modal");
+    button.setAttribute("data-target", "#exampleModal");
 
     // Add click event listener to the button
     addClickListener(button, pokemon);
@@ -137,62 +140,22 @@ let pokemonRepository = (function () {
 
   // Function to show a modal
   function showModal(pokemon) {
-    modalContainer.innerHTML = "";
-    let modal = document.createElement("div");
-    modal.classList.add("modal");
+    console.log(pokemon.height);
 
-    let closeButtonElement = document.createElement("span");
-    closeButtonElement.classList.add("modal-close");
-    closeButtonElement.innerHTML = "&times;";
-    closeButtonElement.addEventListener("click", hideModal);
+    let modalTitle = document.querySelector(".modal-title");
+    console.log(modalTitle.innerText);
+    modalTitle.innerText = pokemon.name;
 
-    let modalContent = document.createElement("div");
-    modalContent.classList.add("modal-content");
-
-    let titleElement = document.createElement("h1");
-    titleElement.innerText = pokemon.name;
+    let pokemonHeight = document.querySelector(".pokemon-height");
+    pokemonHeight.innerText = "Height: " + pokemon.height / 10 + "m";
 
     let typeNames = pokemon.types.map((t) => t.type.name).join(", ");
+    let pokemonType = document.querySelector(".pokemon-type");
+    pokemonType.innerText = "Type: " + typeNames;
 
-    let contentElement = document.createElement("p");
-    contentElement.innerText =
-      "Height: " + pokemon.height + "\n" + "Type: " + typeNames;
-
-    let imageElement = document.createElement("img"); // Image of the Pokemon
+    let imageElement = document.querySelector(".pokemon-image");
     imageElement.src = pokemon.imageUrl;
-
-    modalContent.appendChild(closeButtonElement);
-    modalContent.appendChild(titleElement);
-    modalContent.appendChild(contentElement);
-    modalContent.appendChild(imageElement);
-    modalContainer.appendChild(modal);
-
-    modal.appendChild(modalContent);
-
-    modalContainer.classList.add("is-visible");
   }
-
-  // Function to hide the modal
-  function hideModal() {
-    modalContainer.classList.remove("is-visible");
-  }
-
-  // Close the modal when the escape key is pressed
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modalContainer.classList.contains("is-visible")) {
-      hideModal();
-    }
-  });
-
-  // Close the modal when the overlay is clicked
-  modalContainer.addEventListener("click", (e) => {
-    // Since this is also triggered when clicking INSIDE the modal
-    // We only want to close if the user clicks directly on the overlay
-    let target = e.target;
-    if (target === modalContainer) {
-      hideModal();
-    }
-  });
 
   return {
     // Expose the relevant functions
@@ -211,6 +174,26 @@ let pokemonRepository = (function () {
 // Load the pokemon list and populate the DOM with pokemon list items
 pokemonRepository.loadList().then(function () {
   pokemonRepository.getAll().forEach(function (pokemon) {
+    pokemonRepository.addListItem(pokemon);
+  });
+});
+
+// Get the search button and search input field
+let searchButton = document.querySelector(".btn-outline-success");
+let searchInput = document.querySelector(".form-control");
+
+// Add an event listener to the search button
+searchButton.addEventListener("click", function (event) {
+  event.preventDefault(); // Prevent the form from submitting
+  let searchValue = searchInput.value; // Get the value from the search input field
+  let foundPokemons = pokemonRepository.findByName(searchValue); // Search for the pokemon
+
+  // Clear the current list of pokemons
+  let pokemonList = document.querySelector(".pokemon-list");
+  pokemonList.innerHTML = "";
+
+  // Add the found pokemons to the list
+  foundPokemons.forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
   });
 });
