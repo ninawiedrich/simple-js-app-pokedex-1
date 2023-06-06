@@ -23,7 +23,8 @@ cd simple-js-app
 
 This project uses the following technologies:
 
-- **JavaScript (ES6)**: The core programming language used for this project.
+- **HTML, CSS & JavaScript (ES6)**: The core programming language used for this project.
+- **Bootstrap**: A CSS framework used for styling the application.
 - **ESLint**: A tool for identifying and reporting on patterns in JavaScript. The project follows specific ESLint rules for code consistency.
 - **Browser Support**: This application supports Chrome, Firefox, Safari, Edge, and Internet Explorer 11.
 
