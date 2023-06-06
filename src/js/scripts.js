@@ -174,32 +174,8 @@ pokemonRepository.loadList().then(function () {
   });
 });
 
-// Get the search button and search input field
-let searchButton = document.querySelector(".btn-outline-success");
+// Get the search input field
 let searchInput = document.querySelector(".form-control");
-
-// Add an event listener to the search button
-searchButton.addEventListener("click", function (event) {
-  event.preventDefault(); // Prevent the form from submitting
-  let searchValue = searchInput.value; // Get the value from the search input field
-  let foundPokemons = pokemonRepository.findByName(searchValue); // Search for the pokemon
-
-  // Clear the current list of pokemons
-  let pokemonList = document.querySelector(".pokemon-list");
-  pokemonList.innerHTML = "";
-
-  // Add the found pokemons to the list
-  foundPokemons.forEach(function (pokemon) {
-    pokemonRepository.addListItem(pokemon);
-  });
-});
-
-// Load the pokemon list and populate the DOM with pokemon list items
-pokemonRepository.loadList().then(function () {
-  pokemonRepository.getAll().forEach(function (pokemon) {
-    pokemonRepository.addListItem(pokemon);
-  });
-});
 
 // Add an 'input' event listener to the search input field
 searchInput.addEventListener("input", function () {
