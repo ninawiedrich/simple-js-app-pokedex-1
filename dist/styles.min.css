@@ -1,10 +1,10 @@
 :root {
-  --text-color: white;
+  --text-color: #fff;
   --black: #000;
   --gold: #e6af25;
   --monarch: #6a2629;
   --card-background: #8ceeee;
-  --silver: #c0c0c0;
+  --silver: silver;
   --font-weight-medium: 500;
   --font-weight-regular: 400;
   --font-weight-light: 300;
@@ -14,7 +14,6 @@
   --font-size-h1: 80px;
   --font-size-h2: 20px;
 }
-
 body {
   background-color: var(--black);
   font-family: "Open Sans", sans-serif;
@@ -22,22 +21,18 @@ body {
   font-size: var(--font-size-base);
   color: var(--text-color);
 }
-
 header {
   text-align: center;
   margin-bottom: 2em;
 }
-
 h1 {
   color: var(--gold);
   font-weight: var(--font-weight-extra-bold);
   font-size: var(--font-size-h1);
 }
-
 .highlight {
   color: var(--gold);
 }
-
 .pokemon-list {
   list-style-type: none;
   display: flex;
@@ -45,7 +40,6 @@ h1 {
   align-items: center;
   padding: 0;
 }
-
 .button-pokemon-list {
   background-color: var(--gold);
   color: var(--black);
@@ -57,11 +51,9 @@ h1 {
   cursor: pointer;
   width: 200px;
 }
-
 .modal-content {
   border: 4px solid var(--gold);
 }
-
 .modal-body {
   display: flex;
   flex-direction: column;
@@ -70,26 +62,21 @@ h1 {
   background-color: #000;
   border: none;
 }
-
 .modal-footer {
   background-color: var(--gold);
   border: none;
 }
-
 .modal-header {
   background-color: var(--black);
   color: var(--gold);
   border-bottom: 4px solid var(--gold);
 }
-
 .close {
   color: #fffcee;
 }
-
 #myNavbar {
   color: var(--monarch);
 }
-
 .btn-outline-success {
   color: var(--gold);
   background-color: var(--black);
@@ -97,29 +84,24 @@ h1 {
 }
 .btn-outline-success:hover {
   background-color: var(--monarch);
-  color: white;
+  color: #fff;
   border: 3px solid var(--monarch);
 }
-
 .navbar {
-  background: linear-gradient(to bottom, gold, black);
+  background: linear-gradient(to bottom, gold, #000);
 }
-
 .pokemon-list {
   list-style-type: none;
   display: grid;
 }
-
 .list-item {
   margin-left: 10px;
   margin-right: 10px;
 }
-
 #exampleModal {
   animation-name: zoomIn;
   animation-duration: 0.6s;
 }
-
 @keyframes zoomIn {
   from {
     transform: scale(0);
@@ -128,7 +110,6 @@ h1 {
     transform: scale(1);
   }
 }
-
 @media all and (min-width: 1950px) and (max-width: 3065px) {
   .pokemon-list {
     display: grid;
@@ -137,7 +118,6 @@ h1 {
     border-style: none;
   }
 }
-
 @media all and (min-width: 1650px) and (max-width: 1950px) {
   .pokemon-list {
     display: grid;
@@ -146,7 +126,6 @@ h1 {
     border-style: none;
   }
 }
-
 @media all and (min-width: 1400px) and (max-width: 1650px) {
   .pokemon-list {
     display: grid;
@@ -155,7 +134,6 @@ h1 {
     border-style: none;
   }
 }
-
 @media all and (min-width: 1150px) and (max-width: 1400px) {
   .pokemon-list {
     display: grid;
@@ -164,7 +142,6 @@ h1 {
     border-style: none;
   }
 }
-
 @media all and (min-width: 900px) and (max-width: 1150px) {
   .pokemon-list {
     display: grid;
@@ -173,7 +150,6 @@ h1 {
     border-style: none;
   }
 }
-
 @media all and (min-width: 750px) and (max-width: 900px) {
   .pokemon-list {
     display: grid;
@@ -190,7 +166,6 @@ h1 {
     border-style: none;
   }
 }
-
 @media all and (max-width: 500px) {
   .pokemon-list {
     display: grid;
