@@ -1,6 +1,6 @@
 /* eslint-disable quotes */
 
-let pokemonRepository = (function () {
+let pokemonRepository = (() =>{
   let pokemonList = [];
   let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
 
@@ -50,9 +50,7 @@ let pokemonRepository = (function () {
   }
 
   // Function to get all the pokemon in the repository
-  function getAll() {
-    return pokemonList;
-  }
+  let getAll = () =>  pokemonList;
 
   // Function to find pokemon by name in the repository
   function findByName(name) {
@@ -63,7 +61,7 @@ let pokemonRepository = (function () {
 
   // Function to add a click event listener to the pokemon list button
   function addClickListener(buttonElement, pokemon) {
-    buttonElement.addEventListener("click", function () {
+    buttonElement.addEventListener("click", () => {
       showDetails(pokemon);
     });
   }
@@ -91,10 +89,9 @@ let pokemonRepository = (function () {
   function loadList() {
     showLoadingMessage();
     return fetch(apiUrl)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (json) {
+      .then((response) =>  response.json()
+      )
+      .then((json) => {
         hideLoadingMessage();
         json.results.forEach(function (item) {
           let pokemon = {
