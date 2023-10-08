@@ -27,11 +27,11 @@ This project uses the following technologies:
 - **ESLint**: A tool for identifying and reporting on patterns in JavaScript. The project follows specific ESLint rules for code consistency.
 - **Browser Support**: This application supports Chrome, Firefox, Safari, Edge, and Internet Explorer 11.
 
-## Project Website
+## **4. Project Website
 
 For more information, live demos, and usage examples, please visit the [Pokédex App website](https://ninawiedrich.github.io/simple-js-app-pokedex-1/).
 
 
-## **4. API Used**
+## **5. API Used**
 
 The project leverages the [Pokémon API](https://pokeapi.co/) to fetch and display data about Pokémon. This API provides a wealth of information about Pokémon, including details like their names, types, abilities, stats, and more.
